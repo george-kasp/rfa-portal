@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RFA Submission Form — Kuwait Application Services</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy: #1F4E79;
+  --navy-dark: #163A5B;
+  --navy-light: #2E6DA4;
+  --blue-50: #EFF6FF;
+  --blue-100: #DBEAFE;
+  --blue-200: #BFDBFE;
+  --accent: #C55A11;
+  --green: #27500A;
+  --green-50: #EAF3DE;
+  --red: #991B1B;
+  --gray-50: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-300: #CBD5E1;
+  --gray-400: #94A3B8;
+  --gray-500: #64748B;
+  --gray-700: #334155;
+  --gray-900: #0F172A;
+  --white: #FFFFFF;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,0.12);
+  --font: 'DM Sans', sans-serif;
+  --mono: 'DM Mono', monospace;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font);
+  background: var(--gray-50);
+  color: var(--gray-900);
+}
+
+.app { display: flex; flex-direction: column; min-height: 100vh; }
+
+/* ── HEADER ─────────────────────────────── */
+.header {
+  background: var(--navy);
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+.header-left { display: flex; align-items: center; gap: 12px; }
+.header-icon {
+  width: 36px; height: 36px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.header-icon svg { width: 18px; height: 18px; fill: none; stroke: white; stroke-width: 2; }
+.header-text h1 { color: white; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+.header-text p { color: rgba(255,255,255,0.55); font-size: 12px; margin-top: 1px; }
+.header-user { display: flex; align-items: center; gap: 10px; }
+.header-user span { color: rgba(255,255,255,0.8); font-size: 13px; }
+.avatar {
+  width: 32px; height: 32px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 12px; font-weight: 600;
+}
+
+/* ── BODY ───────────────────────────────── */
+.body { flex: 1; padding: 24px; }
+.form-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  max-width: 900px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* ── SUCCESS BANNER ─────────────────────── */
+.success-banner {
+  display: none;
+  background: #ECFDF5;
+  border: 1px solid #6EE7B7;
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  margin: 0 24px 16px;
+  align-items: center;
+  gap: 10px;
+  animation: slideDown 0.3s ease;
+}
+.success-banner.show { display: flex; }
+.success-banner svg { width: 18px; height: 18px; stroke: #059669; fill: none; stroke-width: 2; flex-shrink: 0; }
+.success-banner div strong { font-size: 13px; color: #065F46; font-weight: 600; display: block; }
+.success-banner div span { font-size: 12px; color: #047857; }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ── SECTION ────────────────────────────── */
+.section-header {
+  padding: 16px 24px 12px;
+  border-bottom: 1px solid var(--gray-100);
+}
+.section-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--navy-light);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.section-title::before {
+  content: '';
+  width: 3px; height: 14px;
+  background: var(--navy);
+  border-radius: 2px;
+  display: block;
+}
+
+/* ── FORM GRID ──────────────────────────── */
+.form-grid {
+  padding: 20px 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.form-group { display: flex; flex-direction: column; gap: 5px; }
+.form-group.span2 { grid-column: span 2; }
+.form-group.full { grid-column: 1 / -1; }
+.form-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray-500);
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+.form-label .req { color: var(--accent); font-size: 13px; }
+.form-input {
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  font-family: var(--font);
+  font-size: 13px;
+  color: var(--gray-900);
+  background: white;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+  width: 100%;
+}
+.form-input:focus { border-color: var(--navy-light); box-shadow: 0 0 0 3px rgba(46,109,164,0.1); }
+.form-input::placeholder { color: var(--gray-300); }
+.form-input.disabled { background: var(--gray-50); color: var(--gray-400); cursor: not-allowed; }
+.form-input.error { border-color: #EF4444; box-shadow: 0 0 0 3px rgba(239,68,68,0.1); }
+.form-textarea {
+  resize: none;
+  height: 90px;
+  padding: 10px 12px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  font-family: var(--font);
+  font-size: 13px;
+  color: var(--gray-900);
+  background: white;
+  transition: border-color 0.15s, box-shadow 0.15s;
+  outline: none;
+  line-height: 1.5;
+  width: 100%;
+}
+.form-textarea:focus { border-color: var(--navy-light); box-shadow: 0 0 0 3px rgba(46,109,164,0.1); }
+.form-textarea::placeholder { color: var(--gray-300); }
+.form-textarea.error { border-color: #EF4444; }
+.field-error { font-size: 11px; color: #EF4444; margin-top: 3px; display: none; }
+.field-error.show { display: block; }
+
+/* ── ATTACH ─────────────────────────────── */
+.attach-zone {
+  border: 1.5px dashed var(--gray-200);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+  background: var(--gray-50);
+  width: 100%;
+}
+.attach-zone:hover { border-color: var(--navy-light); background: var(--blue-50); }
+.attach-zone.has-file { border-color: var(--navy-light); background: var(--blue-50); border-style: solid; }
+.attach-zone.error { border-color: #EF4444; background: #FFF5F5; }
+.attach-icon {
+  width: 40px; height: 40px;
+  background: var(--blue-100);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s;
+}
+.attach-zone.has-file .attach-icon { background: var(--navy); }
+.attach-icon svg { width: 18px; height: 18px; stroke: var(--navy); fill: none; stroke-width: 2; }
+.attach-zone.has-file .attach-icon svg { stroke: white; }
+.attach-text { flex: 1; }
+.attach-text strong { font-size: 13px; color: var(--gray-700); display: block; margin-bottom: 2px; }
+.attach-text span { font-size: 11px; color: var(--gray-400); }
+.attach-text .file-name { font-size: 13px; color: var(--navy); font-weight: 500; }
+.attach-text .file-size { font-size: 11px; color: var(--navy-light); }
+.file-badge {
+  font-size: 10px;
+  font-family: var(--mono);
+  background: var(--navy);
+  color: white;
+  padding: 2px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  margin-right: 8px;
+}
+.remove-file-btn {
+  background: none;
+  border: none;
+  color: var(--gray-400);
+  cursor: pointer;
+  font-size: 20px;
+  padding: 0 4px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+.remove-file-btn:hover { color: #EF4444; }
+#fileInput { display: none; }
+
+/* ── PEOPLE PICKER ──────────────────────── */
+.people-picker { position: relative; }
+.people-search-wrap { position: relative; }
+.people-search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px; height: 14px;
+  stroke: var(--gray-400);
+  fill: none;
+  stroke-width: 2;
+  pointer-events: none;
+}
+.people-input {
+  height: 40px;
+  padding: 0 12px 0 34px;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  font-family: var(--font);
+  font-size: 13px;
+  color: var(--gray-900);
+  background: white;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.people-input:focus { border-color: var(--navy-light); box-shadow: 0 0 0 3px rgba(46,109,164,0.1); }
+.people-input::placeholder { color: var(--gray-300); }
+.people-dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0; right: 0;
+  background: white;
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  z-index: 100;
+  overflow: hidden;
+  display: none;
+}
+.people-dropdown.show { display: block; }
+.people-option {
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: background 0.1s;
+  border-bottom: 1px solid var(--gray-100);
+}
+.people-option:last-child { border-bottom: none; }
+.people-option:hover { background: var(--blue-50); }
+.people-option-avatar {
+  width: 30px; height: 30px;
+  background: var(--blue-100);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 600;
+  color: var(--navy);
+  flex-shrink: 0;
+}
+.people-option-info { flex: 1; }
+.people-option-info strong { font-size: 12px; color: var(--gray-900); display: block; margin-bottom: 1px; }
+.people-option-info span { font-size: 11px; color: var(--gray-400); }
+.people-option-add {
+  width: 22px; height: 22px;
+  background: var(--blue-50);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--navy-light);
+  font-size: 16px;
+  font-weight: 300;
+  flex-shrink: 0;
+}
+.no-results {
+  padding: 12px 14px;
+  font-size: 12px;
+  color: var(--gray-400);
+  text-align: center;
+}
+.people-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  min-height: 4px;
+}
+.people-tag {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 6px 4px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 500;
+  animation: tagIn 0.15s ease;
+}
+@keyframes tagIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+.people-tag.reviewer { background: var(--blue-100); color: var(--navy); }
+.people-tag.approver { background: var(--green-50); color: var(--green); }
+.people-tag button {
+  background: none; border: none;
+  cursor: pointer; font-size: 14px;
+  line-height: 1; padding: 0 2px;
+  opacity: 0.5; color: inherit;
+  transition: opacity 0.15s;
+}
+.people-tag button:hover { opacity: 1; }
+.order-hint { font-size: 10px; color: var(--gray-400); margin-top: 5px; font-style: italic; }
+
+/* ── DIVIDER ─────────────────────────────── */
+.divider { height: 1px; background: var(--gray-100); }
+
+/* ── FOOTER ─────────────────────────────── */
+.footer {
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--gray-50);
+  border-top: 1px solid var(--gray-100);
+}
+.footer-note { font-size: 11px; color: var(--gray-400); }
+.footer-actions { display: flex; gap: 10px; }
+.btn {
+  height: 40px;
+  padding: 0 22px;
+  border-radius: var(--radius);
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.btn-ghost {
+  background: white;
+  color: var(--gray-500);
+  border: 1px solid var(--gray-200);
+}
+.btn-ghost:hover { background: var(--gray-50); border-color: var(--gray-300); color: var(--gray-700); }
+.btn-primary {
+  background: var(--navy);
+  color: white;
+  box-shadow: 0 2px 4px rgba(31,78,121,0.3);
+}
+.btn-primary:hover:not(:disabled) { background: var(--navy-dark); box-shadow: 0 4px 10px rgba(31,78,121,0.35); transform: translateY(-1px); }
+.btn-primary:active:not(:disabled) { transform: translateY(0); }
+.btn-primary:disabled { opacity: 0.7; cursor: not-allowed; }
+.btn-primary svg { width: 14px; height: 14px; stroke: white; fill: none; stroke-width: 2; }
+.btn-success { background: #059669 !important; }
+
+/* ── NOTIFICATION TOAST ──────────────────── */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  padding: 12px 18px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(10px);
+  opacity: 0;
+  transition: all 0.25s;
+  z-index: 1000;
+  max-width: 360px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateY(0); }
+.toast.success { background: #065F46; color: white; }
+.toast.error { background: #991B1B; color: white; }
+.toast svg { width: 16px; height: 16px; stroke: white; fill: none; stroke-width: 2.5; flex-shrink: 0; }
+
+/* ── RESPONSIVE ─────────────────────────── */
+@media (max-width: 640px) {
+  .form-grid { grid-template-columns: 1fr; }
+  .form-group.span2 { grid-column: span 1; }
+  .body { padding: 12px; }
+  .header { padding: 0 16px; }
+  .header-user span { display: none; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="header-left">
+      <div class="header-icon">
+        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+      </div>
+      <div class="header-text">
+        <h1>RFA Portal</h1>
+        <p>New request for approval</p>
+      </div>
+    </div>
+    <div class="header-user">
+      <span id="userName"></span>
+      <div class="avatar" id="userAvatar">--</div>
+    </div>
+  </header>
+
+  <!-- BODY -->
+  <main class="body">
+
+    <!-- SUCCESS BANNER -->
+    <div class="success-banner" id="successBanner">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+      <div>
+        <strong>RFA submitted successfully!</strong>
+        <span>Internal Audit has been notified and will review your request shortly.</span>
+      </div>
+    </div>
+
+    <div class="form-card">
+
+      <!-- SECTION 1: RFA DETAILS -->
+      <div class="section-header">
+        <div class="section-title">RFA Details</div>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label" for="rfaTitle">RFA title <span class="req">*</span></label>
+          <input class="form-input" id="rfaTitle" type="text" placeholder="Enter RFA title" data-clear-error="true">
+          <span class="field-error" id="err-rfaTitle">This field is required</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rfaRefNum">Reference number <span class="req">*</span></label>
+          <input class="form-input" id="rfaRefNum" type="text" placeholder="e.g. RFA-2025-001" data-clear-error="true">
+          <span class="field-error" id="err-rfaRefNum">This field is required</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rfaCompany">Company <span class="req">*</span></label>
+          <input class="form-input" id="rfaCompany" type="text" placeholder="Company name" data-clear-error="true">
+          <span class="field-error" id="err-rfaCompany">This field is required</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="rfaSubject">Subject <span class="req">*</span></label>
+          <input class="form-input" id="rfaSubject" type="text" placeholder="Brief subject of the RFA" data-clear-error="true">
+          <span class="field-error" id="err-rfaSubject">This field is required</span>
+        </div>
+        <div class="form-group span2">
+          <label class="form-label" for="rfaDesc">Description <span class="req">*</span></label>
+          <textarea class="form-textarea" id="rfaDesc" placeholder="Full details and justification of the request" data-clear-error="true"></textarea>
+          <span class="field-error" id="err-rfaDesc">This field is required</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Submission date</label>
+          <input class="form-input disabled" id="rfaDate" type="text" readonly tabindex="-1">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Initiator</label>
+          <input class="form-input disabled" id="rfaInitiator" type="text" readonly tabindex="-1">
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- SECTION 2: RFA DOCUMENT -->
+      <div class="section-header">
+        <div class="section-title">RFA Document</div>
+      </div>
+
+      <div class="form-grid" style="grid-template-columns:1fr">
+        <div class="form-group">
+          <label class="form-label">Attach RFA document <span class="req">*</span></label>
+          <div class="attach-zone" id="attachZone" id="attachZoneBtn" role="button" tabindex="0">
+            <div class="attach-icon">
+              <svg viewBox="0 0 24 24"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48"/></svg>
+            </div>
+            <div class="attach-text" id="attachText">
+              <strong>Click to attach your document</strong>
+              <span>Any file type accepted — PDF, Word, Excel, or any format</span>
+            </div>
+          </div>
+          <span class="field-error" id="err-file">Please attach the RFA document</span>
+          <input type="file" id="fileInput" accept="*/*">
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- SECTION 3: ROUTING -->
+      <div class="section-header">
+        <div class="section-title">Reviewers &amp; Approvers</div>
+      </div>
+
+      <div class="form-grid">
+        <!-- REVIEWERS -->
+        <div class="form-group">
+          <label class="form-label">Reviewers <span class="req">*</span></label>
+          <div class="people-picker">
+            <div class="people-search-wrap">
+              <svg class="people-search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input class="people-input" id="reviewersSearch" type="text" placeholder="Search by name or email..." autocomplete="off">
+            </div>
+            <div class="people-dropdown" id="reviewersDropdown"></div>
+            <div class="people-tags" id="reviewersTags"></div>
+            <div class="order-hint">Added in the order they will review</div>
+          </div>
+          <span class="field-error" id="err-reviewers">Please add at least one reviewer</span>
+        </div>
+
+        <!-- APPROVERS -->
+        <div class="form-group">
+          <label class="form-label">Approvers <span class="req">*</span></label>
+          <div class="people-picker">
+            <div class="people-search-wrap">
+              <svg class="people-search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input class="people-input" id="approversSearch" type="text" placeholder="Search by name or email..." autocomplete="off">
+            </div>
+            <div class="people-dropdown" id="approversDropdown"></div>
+            <div class="people-tags" id="approversTags"></div>
+            <div class="order-hint">Added in the order they will approve</div>
+          </div>
+          <span class="field-error" id="err-approvers">Please add at least one approver</span>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- FOOTER -->
+      <div class="footer">
+        <span class="footer-note">Fields marked <span style="color:var(--accent);font-weight:600">*</span> are required</span>
+        <div class="footer-actions">
+          <button class="btn btn-ghost" id="cancelBtn">Cancel</button>
+          <button class="btn btn-primary" id="submitBtn">
+            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Submit RFA
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+</div>
+
+<!-- TOAST NOTIFICATION -->
+<div class="toast" id="toast">
+  <svg id="toastIcon" viewBox="0 0 24 24"></svg>
+  <span id="toastMsg"></span>
+</div>
+
+<script>
+// ════════════════════════════════════════════════════
+//  CONFIGURATION
+//  Update these values for your organization
+// ════════════════════════════════════════════════════
+const CONFIG = {
+  // SharePoint site URL
+  siteUrl: 'https://kuwaitasp.sharepoint.com/sites/RFAPortal',
+
+  // SharePoint list name
+  listName: 'RFA Tracker',
+
+  // Internal Audit email — receives the first notification
+  internalAuditEmail: 'audit@kuwaitasp.net',
+
+  // Your organization users — add all M365 users here
+  // Format: { name: 'Full Name', email: 'email@domain.com', dept: 'Department' }
+  users: [
+    { name: 'Ahmed Al-Kandari',   email: 'a.kandari@kuwaitasp.net',       dept: 'Finance' },
+    { name: 'Sara Mohammed',      email: 's.mohammed@kuwaitasp.net',       dept: 'Operations' },
+    { name: 'Nasser Al-Fahad',    email: 'n.fahad@kuwaitasp.net',          dept: 'Management' },
+    { name: 'Khalid Al-Ajmi',     email: 'k.alajmi@kuwaitasp.net',         dept: 'IT' },
+    { name: 'Fatima Al-Rashidi',  email: 'f.alrashidi@kuwaitasp.net',      dept: 'HR' },
+    { name: 'Mendix Support',     email: 'mxsupport_boubyan@kuwaitasp.net',dept: 'Support' },
+    { name: 'Internal Audit',     email: 'audit@kuwaitasp.net',            dept: 'Audit' },
+    { name: 'George Wahid',       email: 'george@kuwaitasp.net',           dept: 'IT' },
+    // Add more users here...
+  ]
+};
+
+// ════════════════════════════════════════════════════
+//  STATE
+// ════════════════════════════════════════════════════
+const state = {
+  reviewers: [],
+  approvers: [],
+  file: null,
+  submitting: false
+};
+
+// ════════════════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════════════════
+document.addEventListener('DOMContentLoaded', () => {
+  // Set date
+  const now = new Date();
+  document.getElementById('rfaDate').value =
+    now.toLocaleDateString('en-GB', { day:'2-digit', month:'2-digit', year:'numeric' });
+
+  // Set initiator (from SharePoint context if available, else fallback)
+  const initiatorName = getInitiatorName();
+  document.getElementById('rfaInitiator').value = initiatorName;
+  document.getElementById('userName').textContent = initiatorName;
+  document.getElementById('userAvatar').textContent =
+    initiatorName.split(' ').map(n => n[0]).join('').slice(0,2).toUpperCase();
+
+  // Setup controls
+  setupPeoplePicker('reviewers', 'reviewer');
+  setupPeoplePicker('approvers', 'approver');
+  setupFileUpload();
+
+  // Attach button handlers via addEventListener (CSP-safe)
+  document.getElementById('submitBtn').addEventListener('click', submitRFA);
+
+  // Handle field error clearing via event delegation
+  document.querySelectorAll('[data-clear-error]').forEach(el => {
+    el.addEventListener('input', function() { clearError(this); });
+  });
+  document.getElementById('cancelBtn').addEventListener('click', resetForm);
+  document.getElementById('attachZone').addEventListener('click', function() {
+    document.getElementById('fileInput').click();
+  });
+});
+
+function getInitiatorName() {
+  // Method 1: SharePoint page context (classic pages)
+  try {
+    if (window._spPageContextInfo && window._spPageContextInfo.userDisplayName) {
+      return window._spPageContextInfo.userDisplayName;
+    }
+  } catch(e) {}
+
+  // Method 2: Try parent frame SharePoint context (when in iframe)
+  try {
+    if (window.parent && window.parent._spPageContextInfo && window.parent._spPageContextInfo.userDisplayName) {
+      return window.parent._spPageContextInfo.userDisplayName;
+    }
+  } catch(e) {}
+
+  // Method 3: Microsoft Graph via fetch (works when hosted on SharePoint)
+  fetchCurrentUser();
+
+  // Return placeholder while fetching
+  return '';
+}
+
+async function fetchCurrentUser() {
+  try {
+    // Try SharePoint REST API to get current user
+    const siteUrl = 'https://kuwaitasp.sharepoint.com/sites/RFAPortal';
+    const res = await fetch(siteUrl + '/_api/web/currentuser', {
+      headers: { 'Accept': 'application/json;odata=nometadata' },
+      credentials: 'include'
+    });
+    if (res.ok) {
+      const data = await res.json();
+      const name = data.Title || data.LoginName || '';
+      if (name) {
+        document.getElementById('rfaInitiator').value = name;
+        document.getElementById('userName').textContent = name;
+        document.getElementById('userAvatar').textContent =
+          name.split(' ').map(n => n[0]).join('').slice(0,2).toUpperCase();
+      }
+    }
+  } catch(e) {
+    // If all methods fail, show a prompt for the user to enter their name
+    const initiatorField = document.getElementById('rfaInitiator');
+    initiatorField.readOnly = false;
+    initiatorField.classList.remove('disabled');
+    initiatorField.placeholder = 'Enter your name';
+    initiatorField.style.background = 'white';
+    initiatorField.style.color = 'var(--gray-900)';
+    initiatorField.style.cursor = 'text';
+    document.getElementById('userName').textContent = 'RFA Portal';
+    document.getElementById('userAvatar').textContent = 'RP';
+  }
+}
+
+// ════════════════════════════════════════════════════
+//  PEOPLE PICKER
+// ════════════════════════════════════════════════════
+function setupPeoplePicker(type, tagClass) {
+  const input   = document.getElementById(`${type}Search`);
+  const dropdown = document.getElementById(`${type}Dropdown`);
+
+  input.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    if (q.length < 1) { dropdown.classList.remove('show'); return; }
+
+    const results = CONFIG.users.filter(u =>
+      (u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q)) &&
+      !state[type].find(s => s.email === u.email)
+    );
+
+    if (!results.length) {
+      dropdown.innerHTML = `<div class="no-results">No users found for "${input.value}"</div>`;
+      dropdown.classList.add('show');
+      return;
+    }
+
+    dropdown.innerHTML = results.map(u => `
+      <div class="people-option" data-type="${type}" data-tagclass="${tagClass}" data-name="${escHtml(u.name)}" data-email="${escHtml(u.email)}" data-dept="${escHtml(u.dept||'')}">
+        <div class="people-option-avatar">${u.name.split(' ').map(n=>n[0]).join('').slice(0,2).toUpperCase()}</div>
+        <div class="people-option-info">
+          <strong>${escHtml(u.name)}</strong>
+          <span>${escHtml(u.email)}${u.dept ? ' · '+escHtml(u.dept) : ''}</span>
+        </div>
+        <div class="people-option-add">+</div>
+      </div>
+    `).join('');
+    // Attach click handlers
+    dropdown.querySelectorAll('.people-option').forEach(el => {
+      el.addEventListener('click', () => addPerson(
+        el.dataset.type, el.dataset.tagclass,
+        el.dataset.name, el.dataset.email, el.dataset.dept
+      ));
+    });
+    dropdown.classList.add('show');
+  });
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Escape') dropdown.classList.remove('show');
+  });
+
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.people-picker')) dropdown.classList.remove('show');
+  });
+}
+
+function addPerson(type, tagClass, name, email, dept) {
+  if (state[type].find(p => p.email === email)) return;
+  state[type].push({ name, email, dept });
+  renderTags(type, tagClass);
+  document.getElementById(`${type}Search`).value = '';
+  document.getElementById(`${type}Dropdown`).classList.remove('show');
+  clearFieldError(`err-${type}`);
+}
+
+function removePerson(type, tagClass, email) {
+  state[type] = state[type].filter(p => p.email !== email);
+  renderTags(type, tagClass);
+}
+
+function renderTags(type, tagClass) {
+  const container = document.getElementById(`${type}Tags`);
+  container.innerHTML = state[type].map((p, i) => `
+    <div class="people-tag ${tagClass}">
+      <span style="opacity:0.5;font-size:10px;margin-right:2px">${i+1}.</span>
+      ${escHtml(p.name)}
+  <button class="remove-person-btn" data-type="${type}" data-tagclass="${tagClass}" data-email="${escHtml(p.email)}" title="Remove ${escHtml(p.name)}">×</button>
+    </div>
+  `).join('');
+}
+
+// ════════════════════════════════════════════════════
+//  FILE UPLOAD
+// ════════════════════════════════════════════════════
+function setupFileUpload() {
+  const fileInput = document.getElementById('fileInput');
+  const zone      = document.getElementById('attachZone');
+
+  fileInput.addEventListener('change', () => {
+    const file = fileInput.files[0];
+    if (!file) return;
+    setFile(file);
+  });
+
+  // Drag and drop support
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.style.borderColor = 'var(--navy-light)'; });
+  zone.addEventListener('dragleave', () => { if (!state.file) zone.style.borderColor = ''; });
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    if (file) setFile(file);
+  });
+
+  zone.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') document.getElementById('fileInput').click();
+  });
+}
+
+function setFile(file) {
+  state.file = file;
+  const zone = document.getElementById('attachZone');
+  const text = document.getElementById('attachText');
+  const ext  = file.name.split('.').pop().toUpperCase();
+  const size = file.size < 1024*1024
+    ? `${(file.size/1024).toFixed(0)} KB`
+    : `${(file.size/1024/1024).toFixed(1)} MB`;
+
+  zone.classList.add('has-file');
+  zone.classList.remove('error');
+
+  text.innerHTML = `
+    <div style="display:flex;align-items:center;margin-bottom:3px">
+      <span class="file-badge">${ext}</span>
+      <span class="file-name">${escHtml(file.name)}</span>
+    </div>
+    <span class="file-size">${size} — ready to submit</span>
+  `;
+
+  // Add remove button if not already there
+  if (!zone.querySelector('.remove-file-btn')) {
+    const btn = document.createElement('button');
+    btn.className = 'remove-file-btn';
+    btn.innerHTML = '×';
+    btn.title = 'Remove file';
+    btn.addEventListener('click', e => { e.stopPropagation(); removeFile(); });
+    zone.appendChild(btn);
+  }
+  clearFieldError('err-file');
+}
+
+function removeFile() {
+  state.file = null;
+  document.getElementById('fileInput').value = '';
+  const zone = document.getElementById('attachZone');
+  zone.classList.remove('has-file');
+  zone.querySelectorAll('.remove-file-btn').forEach(b => b.remove());
+  document.getElementById('attachText').innerHTML = `
+    <strong>Click to attach your document</strong>
+    <span>Any file type accepted — PDF, Word, Excel, or any format</span>
+  `;
+}
+
+// ════════════════════════════════════════════════════
+//  VALIDATION
+// ════════════════════════════════════════════════════
+function validate() {
+  let valid = true;
+  const requiredFields = [
+    { id: 'rfaTitle',   err: 'err-rfaTitle' },
+    { id: 'rfaRefNum',  err: 'err-rfaRefNum' },
+    { id: 'rfaCompany', err: 'err-rfaCompany' },
+    { id: 'rfaSubject', err: 'err-rfaSubject' },
+    { id: 'rfaDesc',    err: 'err-rfaDesc' },
+  ];
+
+  requiredFields.forEach(f => {
+    const el = document.getElementById(f.id);
+    if (!el.value.trim()) {
+      el.classList.add('error');
+      document.getElementById(f.err).classList.add('show');
+      valid = false;
+    }
+  });
+
+  if (!state.file) {
+    document.getElementById('attachZone').classList.add('error');
+    document.getElementById('err-file').classList.add('show');
+    valid = false;
+  }
+
+  if (!state.reviewers.length) {
+    document.getElementById('err-reviewers').classList.add('show');
+    valid = false;
+  }
+
+  if (!state.approvers.length) {
+    document.getElementById('err-approvers').classList.add('show');
+    valid = false;
+  }
+
+  if (!valid) showToast('Please fill in all required fields', 'error');
+  return valid;
+}
+
+function clearError(el) {
+  el.classList.remove('error');
+  const errEl = document.getElementById('err-' + el.id);
+  if (errEl) errEl.classList.remove('show');
+}
+
+function clearFieldError(id) {
+  const el = document.getElementById(id);
+  if (el) el.classList.remove('show');
+}
+
+// ════════════════════════════════════════════════════
+//  SUBMIT
+//
+//  TO CONNECT TO SHAREPOINT:
+//  Replace the simulateSubmit() call with submitToSharePoint()
+//  and uncomment the submitToSharePoint function below.
+// ════════════════════════════════════════════════════
+async function submitRFA() {
+  if (state.submitting) return;
+  if (!validate()) return;
+
+  state.submitting = true;
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span>Submitting...</span>';
+
+  try {
+    // ── OPTION A: Simulate (for POC demo) ──
+    await simulateSubmit();
+
+    // ── OPTION B: Real SharePoint submit ──
+    // await submitToSharePoint();
+
+    onSuccess();
+  } catch(err) {
+    console.error('Submit error:', err);
+    showToast('Submission failed. Please try again.', 'error');
+    btn.disabled = false;
+    btn.innerHTML = `
+      <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      Submit RFA
+    `;
+  } finally {
+    state.submitting = false;
+  }
+}
+
+async function simulateSubmit() {
+  // Simulate network delay
+  await new Promise(r => setTimeout(r, 1800));
+
+  // Log the payload so you can see what would be sent
+  const payload = buildPayload();
+  console.log('═══ RFA PAYLOAD ═══');
+  console.log(JSON.stringify(payload, null, 2));
+  console.log('═══════════════════');
+}
+
+/*
+// ── UNCOMMENT THIS TO CONNECT TO REAL SHAREPOINT ──
+async function submitToSharePoint() {
+  const payload = buildPayload();
+
+  // 1. Create list item
+  const itemRes = await fetch(
+    `${CONFIG.siteUrl}/_api/web/lists/getbytitle('${CONFIG.listName}')/items`,
+    {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json;odata=nometadata',
+        'Content-Type': 'application/json;odata=nometadata',
+        'X-RequestDigest': await getRequestDigest()
+      },
+      body: JSON.stringify({
+        Title: payload.title,
+        Reference_x0020_Number: payload.referenceNumber,
+        Company: payload.company,
+        Subject: payload.subject,
+        Description: payload.description,
+        Submission_x0020_Date: payload.submissionDate,
+        Status: 'Submitted'
+      })
+    }
+  );
+
+  if (!itemRes.ok) throw new Error('Failed to create list item');
+  const item = await itemRes.json();
+
+  // 2. Upload attachment
+  if (state.file) {
+    const fileContent = await readFileAsArrayBuffer(state.file);
+    const attachRes = await fetch(
+      `${CONFIG.siteUrl}/_api/web/lists/getbytitle('${CONFIG.listName}')/items(${item.Id})/AttachmentFiles/add(FileName='${encodeURIComponent(state.file.name)}')`,
+      {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json;odata=nometadata',
+          'X-RequestDigest': await getRequestDigest()
+        },
+        body: fileContent
+      }
+    );
+    if (!attachRes.ok) throw new Error('Failed to upload attachment');
+  }
+}
+
+async function getRequestDigest() {
+  const res = await fetch(`${CONFIG.siteUrl}/_api/contextinfo`, {
+    method: 'POST',
+    headers: { 'Accept': 'application/json;odata=nometadata' }
+  });
+  const data = await res.json();
+  return data.FormDigestValue;
+}
+
+function readFileAsArrayBuffer(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = e => resolve(e.target.result);
+    reader.onerror = reject;
+    reader.readAsArrayBuffer(file);
+  });
+}
+*/
+
+function buildPayload() {
+  return {
+    title:           document.getElementById('rfaTitle').value.trim(),
+    referenceNumber: document.getElementById('rfaRefNum').value.trim(),
+    company:         document.getElementById('rfaCompany').value.trim(),
+    subject:         document.getElementById('rfaSubject').value.trim(),
+    description:     document.getElementById('rfaDesc').value.trim(),
+    submissionDate:  new Date().toISOString(),
+    initiator:       document.getElementById('rfaInitiator').value,
+    reviewers:       state.reviewers.map(r => ({ name: r.name, email: r.email })),
+    approvers:       state.approvers.map(a => ({ name: a.name, email: a.email })),
+    fileName:        state.file?.name || null,
+    fileSize:        state.file?.size || null
+  };
+}
+
+function onSuccess() {
+  const btn = document.getElementById('submitBtn');
+  btn.classList.add('btn-success');
+  btn.innerHTML = `
+    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    Submitted
+  `;
+  document.getElementById('successBanner').classList.add('show');
+  document.getElementById('successBanner').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  showToast('RFA submitted successfully! Internal Audit will review shortly.', 'success');
+  setTimeout(resetForm, 5000);
+}
+
+// ════════════════════════════════════════════════════
+//  RESET
+// ════════════════════════════════════════════════════
+function resetForm() {
+  ['rfaTitle','rfaRefNum','rfaCompany','rfaSubject','rfaDesc'].forEach(id => {
+    const el = document.getElementById(id);
+    el.value = '';
+    el.classList.remove('error');
+  });
+
+  document.querySelectorAll('.field-error').forEach(e => e.classList.remove('show'));
+
+  state.reviewers = [];
+  state.approvers = [];
+  renderTags('reviewers', 'reviewer');
+  renderTags('approvers', 'approver');
+  removeFile();
+
+  document.getElementById('successBanner').classList.remove('show');
+
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = false;
+  btn.classList.remove('btn-success');
+  btn.style.background = '';
+  btn.innerHTML = `
+    <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+    Submit RFA
+  `;
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ════════════════════════════════════════════════════
+//  TOAST NOTIFICATION
+// ════════════════════════════════════════════════════
+let toastTimer;
+function showToast(msg, type = '') {
+  clearTimeout(toastTimer);
+  const toast   = document.getElementById('toast');
+  const icon    = document.getElementById('toastIcon');
+  const msgEl   = document.getElementById('toastMsg');
+
+  icon.innerHTML = type === 'success'
+    ? '<polyline points="20 6 9 17 4 12"/>'
+    : '<circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>';
+
+  msgEl.textContent = msg;
+  toast.className = `toast ${type} show`;
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 5000);
+}
+
+// ════════════════════════════════════════════════════
+//  UTILS
+// ════════════════════════════════════════════════════
+function escHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+</script>
+</body>
+</html>
