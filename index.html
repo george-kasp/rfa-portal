@@ -945,7 +945,7 @@ async function submitRFA() {
 
   try {
     // ── OPTION A: Simulate (for POC demo) ──
-   await submitToSharePoint(););
+    await simulateSubmit();
 
     // ── OPTION B: Real SharePoint submit ──
     // await submitToSharePoint();
@@ -975,7 +975,7 @@ async function simulateSubmit() {
   console.log('═══════════════════');
 }
 
-
+/*
 // ── UNCOMMENT THIS TO CONNECT TO REAL SHAREPOINT ──
 async function submitToSharePoint() {
   const payload = buildPayload();
@@ -1040,7 +1040,7 @@ function readFileAsArrayBuffer(file) {
     reader.readAsArrayBuffer(file);
   });
 }
-
+*/
 
 function buildPayload() {
   return {
