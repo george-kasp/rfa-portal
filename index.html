@@ -945,10 +945,10 @@ async function submitRFA() {
 
   try {
     // ── OPTION A: Simulate (for POC demo) ──
-    await simulateSubmit();
+    //await simulateSubmit();
 
     // ── OPTION B: Real SharePoint submit ──
-    // await submitToSharePoint();
+     await submitToSharePoint();
 
     onSuccess();
   } catch(err) {
@@ -963,7 +963,7 @@ async function submitRFA() {
     state.submitting = false;
   }
 }
-
+/*
 async function simulateSubmit() {
   // Simulate network delay
   await new Promise(r => setTimeout(r, 1800));
@@ -974,8 +974,8 @@ async function simulateSubmit() {
   console.log(JSON.stringify(payload, null, 2));
   console.log('═══════════════════');
 }
+*/
 
-/*
 // ── UNCOMMENT THIS TO CONNECT TO REAL SHAREPOINT ──
 async function submitToSharePoint() {
   const payload = buildPayload();
@@ -1040,7 +1040,7 @@ function readFileAsArrayBuffer(file) {
     reader.readAsArrayBuffer(file);
   });
 }
-*/
+
 
 function buildPayload() {
   return {
